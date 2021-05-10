@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exs. aula 14 e 15 - Number e Math</title>
+</head>
+<body>
+    <section>
+        <h1>O seu numero é <span id="numero-titulo">0</span></h1>
+        <div id="texto"></div>
+    </section>
+    <script>
+        const num = prompt('Digite um número:')
+        const numeroTitulo = document.getElementById('numero-titulo')
+        numeroTitulo.innerHTML =  `Número digitado: ${num}<br />`
+
+        const texto = document.getElementById('texto');
+
+        texto.innerHTML = `Raiz quadrada dele: ${num ** 0.5}<br />`
+        texto.innerHTML += `${num} é um numero inteiro: ${num.isInteger()}<br />`
+        texto.innerHTML += `${num} é NaN: ${Math.isNaN(num)}<br />`
+        texto.innerHTML += `Arredondado para baixo (caso seja decimal) : ${Math.floor(num)} <br />`
+        texto.innerHTML += `Arredondado para cima (caso seja decimal) : ${Math.ceil(num)} <br />`
+        texto.innerHTML += `Número digitado com duas casas decimais: ${Math.round(num, 2)}<br />`
+        
+    </script>
+</body>
+</html>
