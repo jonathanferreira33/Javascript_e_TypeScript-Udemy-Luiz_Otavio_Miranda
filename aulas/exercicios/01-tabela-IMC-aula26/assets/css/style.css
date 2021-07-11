@@ -1,0 +1,91 @@
+:root {
+    --primary-color:rgb(39, 112, 248);
+    --primary-color-darker:rgb(33, 95, 211);
+}
+
+* {
+    box-sizing: border-box;
+    outline: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;    
+    background-color: var(--primary-color);
+    line-height: 1.5em;
+    font-size: 1.0em;
+}
+
+p {
+    word-wrap:  break-word;
+}
+
+.container {
+    max-width: 640px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.container-table {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.container-table thead tr {
+    text-transform: uppercase;
+    font-weight: 800;
+
+}
+
+.container-table tr {
+    text-align: center;
+}
+
+.container-table td {
+    align: center;
+}
+
+form input, form label, form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+form input {
+    font-size: 1.3em;
+    height: 50px;
+    padding: 0 20px;
+}
+
+
+form input:focus {
+    outline: 1px solid var(--primary-color);
+}
+
+form button {
+    border: none;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 700;
+    height: 60px;
+    cursor: pointer;
+    margin-top: 25px;
+}
+
+form button:hover {
+    background-color: var(--primary-color-darker);
+}
+
+.p-resultado {
+    background: rgb(76, 253, 76);
+    padding: 5px 0;
+}
+
+.p-resultado-negativo {
+    background: rgb(255, 136, 136);
+    padding: 5px 0;
+}
