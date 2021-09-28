@@ -1,95 +1,56 @@
-function criaCalculadora() {
+function Calculadora() {
     
-    return {
-        //atributos
-        display: document.querySelector('.display'),
+    this.display = document.querySelector('.display');
 
-        
-        
-        
-        //metodos
-        inicia: function() {
-            this.clickBtn();
-            this.pressionaBackSpace();
-            this.pressEnter();
-        },
+    this.inicia = () => {
+        this.capturaClick();
+        this.capturaEnter();
+    }
 
-        pressionaBackSpace() {
-            this.display.addEventListener('keydown', e => {
-              if (e.keyCode === 8) {
-                e.preventDefault();
-                this.clearDisplay();
-              }
-            });
-        },
-
-        pressEnter() {
-            this.display.addEventListener('keyup', e => {
-                if(e.keyCode === 13) {
-                    this.operation();
-                }
-            });
-        },
-
-        operation() {
-            let conta = this.display.value;
-
-            try {
-              conta = eval(conta);
-      
-              if(!conta) {
-                alert('Conta inválida');
-                return;
-              }
-      
-              this.display.value = String(conta);
-            } catch(e) {
-              alert('Conta inválida');
-              return;
+    this.capturaEnter = () => {
+        this.display.addEventListener('keypress', e => {
+            if(e.keyCode === 13) {
+                this.operation();
             }
-        },
+        })
+    };
 
-        clearDisplay() {
-            this.display.value = '';
-        },
+    this.capturaClick = () => {
+        document.addEventListener('click', event => {
+            const elemento = event.target; 
+            if(elemento.classList.contains('btn-num')) this.addNumberDisplay(elemento); // enviando o botão
+            if(elemento.classList.contains('btn-clear')) this.clear();
+            if(elemento.classList.contains('btn-del')) this.del();
+            if(elemento.classList.contains('btn-equals')) this.operation(); 
+        });
+    };
 
-        clickBtn() {
-            document.addEventListener('click', e => { 
-                const el = e.target;
+    this.addNumberDisplay = el => {
+        this.display.value += el.innerText;
+        this.display.focus();
+    };
 
-                if(el.classList.contains('btn-num')) {
-                    this.btnParaDisplay(el.innerText);
-                }
+    this.clear = () => this.display.value = "";
+    
+    this.del = () => this.display.value = this.display.value.slice(0, -1);
 
-                if(el.classList.contains('btn-clear')){
-                    this.clearDisplay();
-                }
-
-                if(el.classList.contains('btn-del')){
-                    this.deleteOne();
-                }
-
-                if(el.classList.contains('btn-equals')){
-                    this.operation();
-                }
-
-                this.display.focus();
-
-            });//poderia usar arrow function pois ela não muda o valor do this
-        },
-
-        deleteOne() {
-            this.display.value = this.display.value.slice(0, -1); // tamanho da string -1
-        },
-
-        btnParaDisplay(valor) {
-            this.display.value += valor;
+    this.operation = () => {
+        try {
+            const conta = eval(this.display.value);
+            if(!conta) { alert('Conta inválida')
+            return;
         }
 
+        this.display.value = conta;
 
+        } catch (error) {
+            alert('Conta inválida');
+            return;
+        }
     };
+       
 }
 
 
-const calculadora = criaCalculadora();
+const calculadora = new Calculadora();
 calculadora.inicia();
